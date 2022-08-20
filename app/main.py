@@ -20,3 +20,7 @@ app.add_middleware(
 )
 app.include_router(students.router)
 app.include_router(teachers.router)
+
+@app.get("/")
+def root():
+    return {"message": " I am Alive:("}
