@@ -14,7 +14,7 @@ router = APIRouter(
 )
 auth_handler = auth.Auth()
 
-@router.get("/",response_model=List[schemas.UserOutput])
+@router.get("/",response_model=List[schemas.StudentOut])
 def get_all_students(db : Session = Depends(get_db) ):
     students = db.query(models.Students).all()
     return students
