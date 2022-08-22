@@ -41,6 +41,7 @@ class Student_In(BaseModel):
     email : EmailStr
     gender: Gender
     admission_no : int
+    Class : str
     Date_of_birth : str
     password : str
 
@@ -63,7 +64,7 @@ class StudentOut(BaseModel):
     email: EmailStr
     gender: Gender
     Date_of_birth : str
-    class_id : int
+    Class : int
     admission_no : int
     
     class Config:
