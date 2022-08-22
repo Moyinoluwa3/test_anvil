@@ -36,16 +36,20 @@ def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
     
     if  email:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= "Student exists")
-    try:
-        hashed_password = utils.hash(user.password)
-        user.password = hashed_password
-        new_user= models.Students(**user.dict())
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        return new_user
-    except Exception as err:
-        return {"message" : err}
+    obj = db.query(models.Students).order_by(models.Students.admission_no.desc())
+    last_admission_no= obj.first()
+    if last_admission_no == None:
+        admission_no = 10000
+    else:
+        admission_no = last_admission_no.admission_no + 1
+    user.admission_no = admission_no
+    hashed_password = utils.hash(user.password)
+    user.password = hashed_password
+    new_student= models.Students(**user.dict())
+    db.add(new_student)
+    db.commit()
+    db.refresh(new_student)
+    return new_student
 
 
 @router.post('/login', response_model=schemas.Token)
