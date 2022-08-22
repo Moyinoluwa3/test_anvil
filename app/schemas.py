@@ -64,7 +64,7 @@ class StudentOut(BaseModel):
     email: EmailStr
     gender: Gender
     Date_of_birth : str
-    Class : int
+    Class : str
     admission_no : int
     
     class Config:
