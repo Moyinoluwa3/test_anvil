@@ -14,7 +14,7 @@ router = APIRouter(
 )
 auth_handler = auth.Auth()
 
-@router.get("/",response_model=List[schemas.UserOutput])
+@router.get("/",response_model=List[schemas.TeacherOut])
 def get_all_teachers(db : Session = Depends(get_db) ):
     teachers = db.query(models.Teachers).all()
     return teachers
@@ -29,8 +29,8 @@ def get_current_teachers(token: str = Depends(oauth2_scheme),db : Session = Depe
 
 
 
-@router.post("/", status_code=201, response_model=schemas.UserOutput )
-def sign_up(user: schemas.UserCreate,db : Session = Depends(get_db)):
+@router.post("/", status_code=201, response_model=schemas.TeacherOut)
+def sign_up(user: schemas.TeacherIn,db : Session = Depends(get_db)):
     email =  db.query(models.Teachers).filter(models.Teachers.email == user.email).first()
     email = jsonable_encoder(email)
     
@@ -67,7 +67,7 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db : Session 
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@router.get('/{id}',response_model=schemas.UserOutput)
+@router.get('/{id}',response_model=schemas.TeacherOut)
 def Get_user(id: int,db : Session = Depends(get_db) ):
     user = db.query(models.Teachers).filter(models.Teachers.id == id).first()
 

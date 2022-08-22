@@ -29,13 +29,13 @@ def get_current_students(token: str = Depends(oauth2_scheme),db : Session = Depe
 
 
 
-@router.post("/", status_code=201, response_model=schemas.UserOutput )
-def sign_up(user: schemas.UserCreate,db : Session = Depends(get_db)):
+@router.post("/signup", status_code=201, response_model=schemas.StudentOut )
+def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
     email =  db.query(models.Students).filter(models.Students.email == user.email).first()
     email = jsonable_encoder(email)
     
     if  email:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= "User exists")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= "Student exists")
     try:
         hashed_password = utils.hash(user.password)
         user.password = hashed_password
@@ -67,7 +67,7 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db : Session 
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@router.get('/{id}',response_model=schemas.UserOutput)
+@router.get('/{id}',response_model=schemas.StudentOut)
 def Get_user(id: int,db : Session = Depends(get_db) ):
     user = db.query(models.Students).filter(models.Students.id == id).first()
 

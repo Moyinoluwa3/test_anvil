@@ -1,39 +1,94 @@
+from typing import Any,Optional
 from datetime import datetime
-from typing import Optional,List
-from unicodedata import category
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel,EmailStr,validator
 from enum import Enum
-from pydantic.types import conint
+
+from sqlalchemy import VARCHAR
+
 
 class Gender(str,Enum):
-    MALE = "MALE"
-    FEMALE = "FEMALE"
+    MALE = "Male"
+    FEMALE = "Female"
 
-
-class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
-    
-class UserOutput(BaseModel):
-    id : int
+class TeacherIn(BaseModel):
+    first_name : str
+    last_name : str
+    name : str
+    gender : Gender
     email : EmailStr
-    account_number:  Optional[int] = None
-    created_at: datetime
+    Class: str
+    subject: str
+    password: str
+
+class TeacherOut(BaseModel):
+    id : int
+    name : str
+    Class: str
+    email : str
+    subject: str
     class Config:
-        orm_mode = True   
+        orm_mode = True
 
-class UserLogin(BaseModel):
-    email: EmailStr 
-    password: str
 
-class Email(BaseModel):
+class ClassIn(BaseModel):
+    name : str
+    class_teacher : str
+
+
+class Student_In(BaseModel):
+    first_name : str
+    last_name: str
+    email : EmailStr
+    gender: Gender
+    admission_no : int
+    Date_of_birth : str
+    password : str
+
+
+class SubjectIn(BaseModel):
+   subject : str
+   subject_teacher : str
+
+
+class SubjectOut(BaseModel):
+    id : int
+    subject : str
+    subject_teacher : str
+    class Config:
+        orm_mode = True
+    
+class StudentOut(BaseModel):
+    first_name : str
+    last_name: str
     email: EmailStr
+    gender: Gender
+    Date_of_birth : str
+    class_id : int
+    admission_no : int
+    
+    class Config:
+        orm_mode = True
 
-class Password(BaseModel):
-    password: str
+    
 class Token(BaseModel):
     access_token: str
     token_type: str
 
 class TokenData(BaseModel):
     id : Optional[str] = None
+class Email(BaseModel):
+    email: EmailStr
+
+class Password(BaseModel):
+    password: str
+
+
+class Admin(BaseModel):
+    name : str
+    password: str
+
+class AdminOut(BaseModel):
+    id : int
+    name : str
+    class Config:
+        orm_mode = True
