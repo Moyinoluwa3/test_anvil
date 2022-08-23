@@ -6,15 +6,13 @@ from enum import Enum
 from sqlalchemy import VARCHAR
 
 
-class Gender(str,Enum):
-    MALE = "Male"
-    FEMALE = "Female"
+
 
 class TeacherIn(BaseModel):
     first_name : str
     last_name : str
     name : str
-    gender : Gender
+    gender : str
     email : EmailStr
     Class: str
     subject: str
@@ -39,8 +37,7 @@ class Student_In(BaseModel):
     first_name : str
     last_name: str
     email : EmailStr
-    gender: Gender
-    admission_no : int
+    gender: str
     Class : str
     Date_of_birth : str
     password : str
@@ -62,7 +59,7 @@ class StudentOut(BaseModel):
     first_name : str
     last_name: str
     email: EmailStr
-    gender: Gender
+    gender: str
     Date_of_birth : str
     Class : str
     admission_no : int
