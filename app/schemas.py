@@ -40,6 +40,7 @@ class Student_In(BaseModel):
     last_name: str
     email : EmailStr
     gender: Gender
+    admission_no: int
     Class : str
     Date_of_birth : str
     password : str
