@@ -42,10 +42,9 @@ def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
         admission_no = 10000
     else:
         admission_no = last_admission_no.admission_no + 1
-    user.admission_no = admission_no
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
-    new_student= models.Students(**user.dict())
+    new_student= models.Students(admission_no=admission_no,**user.dict())
     db.add(new_student)
     db.commit()
     db.refresh(new_student)
