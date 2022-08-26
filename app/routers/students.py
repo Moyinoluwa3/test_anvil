@@ -90,7 +90,7 @@ def Get_user(email: str,db : Session = Depends(get_db) ):
         print(user_id)
 
 
-@router.get('/{Class}',response_model=List[schemas.StudentOut])
+@router.post('/Class',response_model=List[schemas.StudentOut])
 def Get_Student(Class: str,db : Session = Depends(get_db)):
     student = db.query(models.Students).filter(models.Students.Class == Class).all()
 
