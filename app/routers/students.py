@@ -88,3 +88,14 @@ def Get_user(email: str,db : Session = Depends(get_db) ):
     else:
         user_id = user.id
         print(user_id)
+
+
+@router.get('/{Class}',response_model=List[schemas.StudentOut])
+def Get_Student(Class: str,db : Session = Depends(get_db)):
+    student = db.query(models.Students).filter(models.Students.Class == Class).all()
+
+    if not student:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Students does not exist")
+
+    return student
+                        
