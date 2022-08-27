@@ -69,7 +69,8 @@ class StudentOut(BaseModel):
     class Config:
         orm_mode = True
 
-    
+class ResultIn(BaseModel):
+    email : EmailStr
 class Token(BaseModel):
     access_token: str
     token_type: str

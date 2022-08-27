@@ -42,6 +42,8 @@ def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
         admission_no = 10000
     else:
         admission_no = last_admission_no.admission_no + 1
+    result = db.query(models.Results).filter(models.Results.email == user.email).first()
+    result.admission_no = admission_no
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
     new_student= models.Students(admission_no=admission_no,**user.dict())
@@ -78,7 +80,7 @@ def Get_user(id: int,db : Session = Depends(get_db) ):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Students does not exist")
 
     return user
-@router.get("/{email}")
+@router.get("/email")
 def Get_user(email: str,db : Session = Depends(get_db) ):
     user = db.query(models.Students).filter(models.Students.email == email).first()
 
