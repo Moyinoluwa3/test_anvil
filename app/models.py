@@ -68,6 +68,7 @@ class Results(Base):
     Mathematics_exams = Column(Integer)
     Mathematics_total =  Column(Integer)
     M_Remarks = Column(String)
+    M_Grade = Column(String)
     English_test = Column(Integer)
     English_exams = Column(Integer)
     English_total =  Column(Integer)
