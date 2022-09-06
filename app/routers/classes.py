@@ -74,7 +74,7 @@ def get_a_student(Class: str , subject: str , db : Session = Depends(database.ge
     
     student = db.query(models.Students).filter(models.Students.Class == Class,or_(models.Students.subject_1.like(subject),models.Students.subject_2.like(subject),
     models.Students.subject_3.like(subject),models.Students.subject_4.like(subject),models.Students.subject_5.like(subject),models.Students.subject_6.like(subject),
-    models.Students.subject_7.like(subject),models.Students.subject_8.like(subject),models.Students.subject_9.like(subject),models.Students.subject_10.like(subject))).first()
+    models.Students.subject_7.like(subject),models.Students.subject_8.like(subject),models.Students.subject_9.like(subject),models.Students.subject_10.like(subject))).all()
     if not student:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Not available")
     return student
