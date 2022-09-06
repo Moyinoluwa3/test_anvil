@@ -43,6 +43,16 @@ class Student_In(BaseModel):
     Class : str
     Date_of_birth : str
     password : str
+    subject_1 : str
+    subject_2: str
+    subject_3: str
+    subject_4: str
+    subject_5: str
+    subject_6: str
+    subject_7: str  
+    subject_8: str
+    subject_9: str
+    subject_10: str
 
 
 class SubjectIn(BaseModel):
@@ -65,6 +75,7 @@ class StudentOut(BaseModel):
     Date_of_birth : str
     Class : str
     admission_no : int
+
     
     class Config:
         orm_mode = True

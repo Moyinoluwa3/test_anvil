@@ -38,7 +38,18 @@ class Students(Base):
     Date_of_birth = Column(String,nullable=False)
     Class = Column(String,nullable=False)
     password = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()')) 
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    subject_1 = Column(String)
+    subject_2 = Column(String)
+    subject_3 = Column(String)
+    subject_4 = Column(String)
+    subject_5 = Column(String)
+    subject_6 = Column(String)
+    subject_7 = Column(String)
+    subject_8 = Column(String)
+    subject_9 = Column(String)
+    subject_10 = Column(String)
+
 
 
 class Subjects(Base):
