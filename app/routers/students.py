@@ -40,8 +40,8 @@ def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
     last_admission_no= obj.first()
     if last_admission_no == None:
         admission_no = 10000
-    
-    admission_no = last_admission_no.admission_no + 1
+    else:
+        admission_no = last_admission_no.admission_no + 1
     # result = db.query(models.Results).filter(models.Results.email == user.email).first()
     # result.admission_no = admission_no
     hashed_password = utils.hash(user.password)
