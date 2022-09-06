@@ -38,10 +38,10 @@ def sign_up(user: schemas.Student_In,db : Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail= "Student exists")
     obj = db.query(models.Students).order_by(models.Students.admission_no.desc())
     last_admission_no= obj.first()
-    if last_admission_no == None:
-        admission_no = 10000
-    else:
+    if last_admission_no :
         admission_no = last_admission_no.admission_no + 1
+    else:
+        admission_no = 1000
     # result = db.query(models.Results).filter(models.Results.email == user.email).first()
     # result.admission_no = admission_no
     hashed_password = utils.hash(user.password)
