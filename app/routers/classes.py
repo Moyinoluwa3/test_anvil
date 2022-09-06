@@ -69,7 +69,7 @@ def get_result(db : Session = Depends(database.get_db)):
 
 @router.post("/findsubjects", response_model=List[schemas.StudentOut])
 def get_a_student(Class: str , subject: str , db : Session = Depends(database.get_db)):
-    student = db.query(models.Students).filter(models.Students.Class == Class,models.Students.subject == subject).first()
+    student = db.query(models.Students).filter(models.Students.Class == Class,subject).first()
     if not student:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Not available")
     return student
