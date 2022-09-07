@@ -53,14 +53,17 @@ def create_result(result: schemas.ResultIn,db : Session = Depends(database.get_d
     former_name = db.query(models.Results).filter(models.Results.admission_no == result.admission_no).first()
     if former_name:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="You cant a create result for a student twice")
-    average = (result.biology_total+result.chemistry_total+result.civic_total+result.dp_total+result.English_total+result.furthermaths_total+result.geography_total
-    +result.Mathematics_total+result.physics_total+result.youruba_total)/10
-    result.average = average
+    # average = (result.biology_total+result.chemistry_total+result.civic_total+result.dp_total+result.English_total+result.furthermaths_total+result.geography_total
+    # +result.Mathematics_total+result.physics_total+result.youruba_total)/10
+    # result.average = average
     new_result = models.Results(**result.dict())
     db.add(new_result)
     db.commit()
     db.refresh(new_result)
     return {"message": " Sucessfully updated"}
+
+# @router.post('/result')
+# def create_result()
 
 @router.get("/results/{admission_no}", response_model=schemas.ResultIn)
 def get_result(db : Session = Depends(database.get_db)):
