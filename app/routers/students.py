@@ -80,7 +80,7 @@ def Get_user(id: int,db : Session = Depends(get_db) ):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Students does not exist")
 
     return user
-@router.get("/email")
+@router.get("/{email}",response_model=schemas.StudentOut)
 def Get_user(email: str,db : Session = Depends(get_db) ):
     user = db.query(models.Students).filter(models.Students.email == email).first()
 
