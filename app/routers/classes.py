@@ -60,7 +60,7 @@ def create_result(result: schemas.ResultIn,db : Session = Depends(database.get_d
     db.add(new_result)
     db.commit()
     db.refresh(new_result)
-    return {"message": " Sucessfully updated"}
+    return {"message": "Sucessfully updated"}
 
 # @router.post('/result')
 # def create_result()
