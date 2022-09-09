@@ -140,7 +140,6 @@ class ResultIn(BaseModel):
     D_Grade : str
     term : str
     Class: str
-    average : int
     position : str
     overall_position : str
     resumption: str
