@@ -56,7 +56,7 @@ def create_result(result: schemas.ResultIn,db : Session = Depends(database.get_d
     average = (result.biology_total+result.chemistry_total+result.civic_total+result.dp_total+result.English_total+result.furthermaths_total+result.geography_total
     +result.Mathematics_total+result.physics_total+result.youruba_total)/10
    
-    new_result = models.Results(average=average**result.dict())
+    new_result = models.Results(average=average,**result.dict())
     db.add(new_result)
     db.commit()
     db.refresh(new_result)
