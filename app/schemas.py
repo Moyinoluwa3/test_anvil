@@ -143,7 +143,6 @@ class ResultIn(BaseModel):
     position : str
     overall_position : str
     resumption: str
-    average : int
     
 class Token(BaseModel):
     access_token: str
