@@ -88,54 +88,54 @@ class ResultIn(BaseModel):
     Class : str
     email: EmailStr
 
-    Mathematics_test : str
-    Mathematics_exams: str
-    Mathematics_total : str
+    Mathematics_test : int
+    Mathematics_exams: int
+    Mathematics_total : int
     M_Remarks  : str
     M_Grade : str
-    English_test : str
-    English_exams : str
-    English_total : str
+    English_test : int
+    English_exams : int
+    English_total : int
     E_Remarks: str
     E_Grade: str
-    physics_test : str
-    physics_exams :str
-    physics_total : str
+    physics_test : int
+    physics_exams : int
+    physics_total : int
     P_Remarks : str
     P_Grade : str
-    biology_test :str
-    biology_exams: str
-    biology_total: str
+    biology_test : int
+    biology_exams: int
+    biology_total: int
     B_Remarks : str
     B_Grade : str
-    geography_test: str
-    geography_exams : str
-    geography_total : str
+    geography_test: int
+    geography_exams : int
+    geography_total : int
     G_Remarks : str 
     G_Grade : str
-    chemistry_text: str
-    chemistry_exams : str
-    chemistry_total : str
+    chemistry_text: int
+    chemistry_exams : int
+    chemistry_total : int
     C_Remarks: str
     C_Grade : str
-    furthermaths_test : str
-    furthermaths_exams: str
-    furthermaths_total: str
+    furthermaths_test : int
+    furthermaths_exams: int
+    furthermaths_total: int
     F_Remarks : str
     F_Grade : str
-    yoruba_test :str
-    yoruba_exams : str
-    youruba_total :str
+    yoruba_test : int
+    yoruba_exams : int
+    youruba_total : int
     Y_Remarks : str
     Y_Grade : str
-    civic_test :str
-    civic_exams : str
-    civic_total : str
+    civic_test : int
+    civic_exams : int
+    civic_total : int
     CI_Remarks : str
     CI_Grade : str
-    dp_test : str
-    dp_exams : str
-    dp_total : str
+    dp_test : int
+    dp_exams : int
+    dp_total : int
     D_Remarks : str
     D_Grade : str
     term : str
@@ -143,7 +143,7 @@ class ResultIn(BaseModel):
     position : str
     overall_position : str
     resumption: str
-    average : str
+    average : int
     
 class Token(BaseModel):
     access_token: str
