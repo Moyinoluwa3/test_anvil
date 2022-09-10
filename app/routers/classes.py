@@ -65,7 +65,7 @@ def create_result(result: schemas.ResultIn,db : Session = Depends(database.get_d
 # @router.post('/result')
 # def create_result()
 
-@router.get("/results/{admission_no}", response_model=schemas.ResultIn)
+@router.get("/results/{admission_no}", response_model=schemas.ResultOut)
 def get_result(admission_no: int ,db : Session = Depends(database.get_db)):
     result = db.query(models.Results).filter(models.Results.admission_no == admission_no).first()
     if not result:
