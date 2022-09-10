@@ -66,8 +66,8 @@ def create_result(result: schemas.ResultIn,db : Session = Depends(database.get_d
 # def create_result()
 
 @router.get("/results/{admission_no}", response_model=schemas.ResultIn)
-def get_result(db : Session = Depends(database.get_db)):
-    result = db.query(models.Results).filter(models.Results.admission_no == result.admission_no).first()
+def get_result(admission_no: int ,db : Session = Depends(database.get_db)):
+    result = db.query(models.Results).filter(models.Results.admission_no == admission_no).first()
     if not result:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Not available")
     return result
